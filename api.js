@@ -53,6 +53,15 @@ app.get('/doctor', function (req, res) {
     });
 });
 
+app.get('/doctor/:id', function (req, res) {
+    console.log('GET Doctor');
+    con.query("SELECT * from doctor where doctorID = "+req.params.id, function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+      res.send(result);
+    });
+});
+
 app.get('/patient/:id/recalls', function (req, res) {
     console.log('GET patient recalls');
     con.query("SELECT * from recall where patientID = "+req.params.id, function (err, result, fields) {
