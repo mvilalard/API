@@ -99,6 +99,14 @@ app.get('/patient/:id/prescription', function (req, res) {
     });
 });
 
+app.get('/ordinance/:id/prescription', function (req, res) {
+    console.log('GET ordinance prescription');
+    con.query("SELECT * from prescription where ordinanceID = "+req.params.id, function (err, result, fields) {
+      if (err) throw err;
+      console.log(result);
+      res.send(result);
+    });
+});
 
 app.get('/medicament/', function (req, res) {
     console.log('GET medicament');
